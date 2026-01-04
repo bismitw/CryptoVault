@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1> Crypto Tracker</h1>
+            <div class="header-stats">
+                <span>Total: $<span id="total-value">0.00</span></span>
+                <span>PNL: $<span id="pnl">0.00</span></span>
+                <span>Coins: <span id="coin-count">0</span></span>
+            </div>
+        </header>
+
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Search BTC, ETH, SOL...">
+            <button id="add-coin-btn">Add Coin</button>
+        </div>
+
+        <div class="coin-results" id="coin-results">
+            <!-- Search results appear here -->
+        </div>
+
+        <div class="portfolio" id="portfolio">
+            <h2>Your Portfolio</h2>
+            <div id="portfolio-list">
+                <!-- Portfolio coins appear here -->
+            </div>
+        </div>
+
+        <button id="refresh-btn" class="refresh-btn">🔄 Refresh Prices</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
