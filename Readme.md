@@ -1,6 +1,6 @@
 # 💎 Crypto Vault - Real-Time Portfolio Tracker
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=netlify)](https://crypto-vault.netlify.app)
+[![Live Demo]()
 [![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-100%25-green?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CoinGecko API](https://img.shields.io/badge/CoinGecko-Free%20API-orange?style=for-the-badge&logo=data:image/svg+xml;base64,...)
 
