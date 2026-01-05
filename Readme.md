@@ -1,6 +1,5 @@
 # 💎 Crypto Vault - Real-Time Portfolio Tracker
 
-[![Live Demo]()
 [![Vanilla JS](https://img.shields.io/badge/Vanilla%20JS-100%25-green?style=for-the-badge&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![CoinGecko API](https://img.shields.io/badge/CoinGecko-Free%20API-orange?style=for-the-badge&logo=data:image/svg+xml;base64,...)
 
@@ -14,10 +13,6 @@ Live crypto prices, portfolio tracking, profit/loss—all in browser with **no b
 - 📱 Fully responsive (mobile-first)
 - 🔄 Auto-refreshes prices every 30s
 
-## 🖼️ Screenshots
-![Dashboard](screenshots/dashboard.png)
-![Search](screenshots/search.png)
-![Portfolio](screenshots/portfolio.png)
 
 ## 🚀 Quick Start
 1. Download ZIP or `git clone`
@@ -27,3 +22,12 @@ Live crypto prices, portfolio tracking, profit/loss—all in browser with **no b
 **No setup required** ✅
 
 ## 🛠️ Tech Stack
+HTML5 | CSS3 (Grid/Flexbox) | Vanilla JavaScript (ES6+)
+CoinGecko API | localStorage
+
+
+## 📁 Structure
+├── index.html # Semantic HTML5
+├── styles.css # Dark theme + responsive
+└── script.js # Modular API + state mgmt
+
