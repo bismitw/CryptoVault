@@ -57,7 +57,36 @@ const API_Base = "https://api.coingecko.com/api/v3";
             
         } catch (error) {
             console.error('Price Fetch Error:',error);
-            
         }
     }
+
+    //Add to portfolio
+    function addtoPortfolio(coin){
+        const amount = prompt(`How much ${coin.symbol.toUpperCase()} do you own?`);
+        if(!amount || isNaN(amount)|| amount <= 0) return;
+
+        fetch(`${API_Base}/simple/price?ids=${coin.id}&vs_currencies=usd`)
+        .then(res => res.json())
+        .then(data=> {
+            const boughtPrice = data[coin.id]?.usd || 0;
+                const portfolioItem = {
+                    id: Date.now(),
+                    coinId: coin.id,
+                    symbol: coin.symbol.toUpperCase(),
+                    name: coin.name,
+                    amount: parseFloat(amount),
+                    boughtPrice: boughtPrice
+                }
+                portfolio.push(portfolioItem);
+                localStorage.setItem(
+                "crypto-portfolio",
+                JSON.stringify(portfolio)
+                );
+                renderPortfolio();
+                updateTotals();
+                coinResults.innerHTML = "";
+                searchInput.value = "";
+        })
+    }
+    
 })
