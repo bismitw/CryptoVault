@@ -88,5 +88,23 @@ const API_Base = "https://api.coingecko.com/api/v3";
                 searchInput.value = "";
         })
     }
-    
+
+    //fetch live scores
+        async function fetchPrices() {
+        try {
+            const ids = portfolio.map((item) => item.coinId).join(",");
+            if (!ids) return;
+
+            const response = await fetch(
+            `${API_Base}/simple/price?ids=${ids}&vs_currencies=usd`
+            );
+            currentPrices = await response.json();
+
+            renderPortfolio();
+            updateTotals();
+        } catch (error) {
+            console.error("Price fetch error:", error);
+        }
+        }
+
 })
