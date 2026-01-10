@@ -32,6 +32,32 @@ const API_Base = "https://api.coingecko.com/api/v3";
         }   
     }
 
-    
+//Render Search Results
 
+    async function renderSearchResults(){
+        if(!allCoins.length) return;
+
+        try {
+            const ids = allCoins.map(coin => coin.id).join(',');
+            const priceResponse = await fetch (`${API_Base}/simple/price?ids=${ids}&vs_currencies=usd`);
+            const prices = await priceResponse.json();
+            coinResults.innerHTML = '';
+            allCoins.array.forEach(coin => {
+                const price = prices[coin.id]?.usd || 0;
+                const coinEl = document.createElement('div');
+                coinEl.className = 'coin-item';
+                coinEl.innerHTML = `<div class="coin-info">
+                        <div class="coin-symbol">${coin.symbol.toUpperCase()}</div>
+                        <div class="coin-name">${coin.name}</div>
+                    </div>
+                    <div class="coin-price">$${price ? price.toFixed(4) : "N/A"}</div>`;
+                    coinEl.addEventListener('click', ()=> addtoPortfolio(coin));
+                    coinResults.appendChild(coinEl);
+            });
+            
+        } catch (error) {
+            console.error('Price Fetch Error:',error);
+            
+        }
+    }
 })
