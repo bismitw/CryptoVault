@@ -167,7 +167,16 @@ const API_Base = "https://api.coingecko.com/api/v3";
             fetchPrices(); //Refresh prices
         }
     } );
-    
-
+    //Event listeners
+    let searchTimeout;
+    searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        if(e.target.value.length>2){
+            searchTimeout = searchTimeout(() => searchCoins(e.target.value),500);//Debounce
+        } else{
+            coinResults.innerHTML = '';
+        }
+    });
+        refreshBtn.addEventListener("click", fetchPrices);
 
 })
