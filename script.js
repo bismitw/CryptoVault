@@ -139,4 +139,23 @@ const API_Base = "https://api.coingecko.com/api/v3";
         });
     }
 
+    //Update totals
+    function updateTotals(){
+        const totalValue= portfolio.reduce((sum,item) =>{
+            const price = currentPrices[item.coinId]?.usd || item.boughtPrice || 0;
+            return sum + (item.amount * item.boughtPrice);
+        },0);
+
+        const totalInvested = portfolio.reduce((sum,item) => {
+            return sum + (item.amount * item.boughtPrice);
+        },0);
+
+        const pnl = totalValue - totalInvested;
+        totalValueDisplay.textContent = totalValue.toFixed(2);
+        pnlDisplay.textContent = pnl.toFixed(2);
+        pnlDisplay.className = pnl >= 0 ? "pnl-profit" : "pnl-loss";
+    }
+
+
+
 })
