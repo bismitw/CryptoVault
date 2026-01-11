@@ -179,4 +179,10 @@ const API_Base = "https://api.coingecko.com/api/v3";
     });
         refreshBtn.addEventListener("click", fetchPrices);
 
+    //init
+    renderPortfolio();
+    fetchPrices();
+    
+    // Auto-refresh every 30s
+    setInterval(fetchPrices, 30000);
 })
