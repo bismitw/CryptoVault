@@ -156,6 +156,18 @@ const API_Base = "https://api.coingecko.com/api/v3";
         pnlDisplay.className = pnl >= 0 ? "pnl-profit" : "pnl-loss";
     }
 
+    //Delete coin(Event delegation)
+    portfolioList.addEventListener('click', (e) => {
+        if(e.target.classlist.contains('delete-btn')){
+            const id = parseInt(e.target.dataset.id);
+            portfolio = portfolio.filter((item) => item.id !== id);
+            localStorage.setItem("crypto-portfolio", JSON.stringify(portfolio));
+            renderPortfolio();
+            updateTotals();
+            fetchPrices(); //Refresh prices
+        }
+    } );
+    
 
 
 })
