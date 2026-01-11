@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 //State variables
 let portfolio = JSON.parse(localStorage.getItem('crypto-portfolio')) || [];
 let allCoins = [];
-let currentPieces = [];
+let currentPrices = [];
 
 //CoinGecko API 
 
@@ -89,7 +89,7 @@ const API_Base = "https://api.coingecko.com/api/v3";
         })
     }
 
-    //fetch live scores
+    //fetch live Prices
         async function fetchPrices() {
         try {
             const ids = portfolio.map((item) => item.coinId).join(",");
@@ -106,5 +106,37 @@ const API_Base = "https://api.coingecko.com/api/v3";
             console.error("Price fetch error:", error);
         }
         }
+
+    //Render portfolio
+    
+    function renderPortfolio(){
+        portfolioList.innerHTML = '';
+        if(!portfolio.length){
+            portfolioList.innerHTML = '<div class="empty-state"><h3>Your portfolio is empty</h3><p>Add coins using search above!</p></div>';
+            coinCountDisplay.textContent = "0";
+            return;
+        }
+        portfolio.forEach(item => {
+            const currentPrice =
+            currentPrices[item.coinId]?.usd || item.boughtPrice || 0;
+            const currentValue = item.amount * currentPrice;
+            const pnlValue = currentValue - item.amount * item.boughtPrice;
+            const pnlPercent = ((pnlValue / (item.amount * item.boughtPrice)) * 100).toFixed(2);
+            const portfolioEl = document.createElement("div");
+            portfolioEl.className = "portfolio-item";
+            portfolioEl.innerHTML = `
+                <div class="portfolio-symbol">${item.symbol}</div>
+                <div class="portfolio-amount">${item.amount.toFixed(4)}</div>
+                <div class="portfolio-current">$${currentPrice.toFixed(4)}</div>
+                <div class="portfolio-pnl ${pnlValue >= 0 ? "pnl-profit" : "pnl-loss"
+                }">
+                    $${pnlValue.toFixed(2)} (${pnlPercent}%)
+                </div>
+                <button class="delete-btn" data-id="${item.id}">×</button>
+            `;
+            portfolioList.appendChild(portfolioEl);
+            
+        });
+    }
 
 })
